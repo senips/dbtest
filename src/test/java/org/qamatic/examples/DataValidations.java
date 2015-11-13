@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.Assert.assertNotNull;
 
 
-public class JUnitSpringExample {
+public class DataValidations extends BaseDbTest {
 
     @Autowired
     private Dummy injectedObject;
