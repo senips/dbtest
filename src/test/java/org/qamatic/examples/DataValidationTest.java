@@ -3,19 +3,19 @@ package org.qamatic.examples;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.qamatic.mintleaf.core.DbConnectionProperties;
+import org.qamatic.mintleaf.interfaces.DbContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import static org.junit.Assert.assertNotNull;
 
 
 public class DataValidationTest extends BaseDbTest {
 
-    @Autowired
-    private Dummy injectedObject;
 
     @Autowired
-    private DbConnectionProperties connectionProperties;
+    @Qualifier("TEST_USER_CONTEXT")
+    private DbContext testUserDbContext;
 
     @BeforeClass
     public static void setUp() {
@@ -30,7 +30,7 @@ public class DataValidationTest extends BaseDbTest {
     @Test
     public void testSampleServiceGetOrder() {
 
-        assertNotNull("Object is not null", connectionProperties);
+        assertNotNull("Object is not null", testUserDbContext);
 
     }
 }

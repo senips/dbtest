@@ -4,19 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="dummy" class="org.qamatic.examples.Dummy">
-
-
-    </bean>
-
-
-    <bean id="TEST_SCHEMA_CONTEXT" class="org.qamatic.mintleaf.oracle.OracleDbContext"
+    <bean id="TEST_USER_CONTEXT" class="org.qamatic.mintleaf.oracle.OracleDbContext"
           primary="true">
         <constructor-arg>
             <bean class="org.apache.commons.dbcp2.BasicDataSource">
-                <property name="url" value="#{connectionProperties.jdbcUrl}"/>
-                <property name="username" value="#{connectionProperties.username}"/>
-                <property name="password" value="#{connectionProperties.password}"/>
+                <property name="url" value="#{TEST_USER_PROP.jdbcUrl}"/>
+                <property name="username" value="#{TEST_USER_PROP.username}"/>
+                <property name="password" value="#{TEST_USER_PROP.password}"/>
                 <property name="validationQuery" value="Select 1 from dual"/>
                 <property name="testOnBorrow" value="true"/>
                 <property name="testOnReturn" value="true"/>
@@ -25,20 +19,14 @@
                 </property>
             </bean>
         </constructor-arg>
-        <property name="dbSettings" ref="connectionProperties"/>
-
+        <property name="dbSettings" ref="TEST_USER_PROP"/>
 
     </bean>
 
-    <bean id="propertyReader"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location">
-            <value>classpath:test.properties</value>
-        </property>
-    </bean>
-
-    <bean id="connectionProperties" class="org.qamatic.mintleaf.core.DbConnectionProperties">
+    <bean id="TEST_USER_PROP" class="org.qamatic.mintleaf.core.DbConnectionProperties">
         <constructor-arg value="test.properties"/>
     </bean>
 
 </beans>
+
+        <!--db.url=jdbc:oracle:thin:@<hostname>:1521:TESTORCL-->
