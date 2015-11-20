@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dummy" class="org.qamatic.examples.Dummy">
+
+
+    </bean>
+
+
+    <bean id="TEST_SCHEMA_CONTEXT" class="org.qamatic.mintleaf.oracle.OracleDbContext"
+          primary="true">
+        <constructor-arg>
+            <bean class="org.apache.commons.dbcp2.BasicDataSource">
+                <property name="url" value="#{connectionProperties.jdbcUrl}"/>
+                <property name="username" value="#{connectionProperties.username}"/>
+                <property name="password" value="#{connectionProperties.password}"/>
+                <property name="validationQuery" value="Select 1 from dual"/>
+                <property name="testOnBorrow" value="true"/>
+                <property name="testOnReturn" value="true"/>
+                <property name="accessToUnderlyingConnectionAllowed">
+                    <value>true</value>
+                </property>
+            </bean>
+        </constructor-arg>
+        <property name="dbSettings" ref="connectionProperties"/>
+
+
+    </bean>
+
+    <bean id="propertyReader"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:test.properties</value>
+        </property>
+    </bean>
+
+    <bean id="connectionProperties" class="org.qamatic.mintleaf.core.DbConnectionProperties">
+        <constructor-arg value="test.properties"/>
+    </bean>
+
+</beans>

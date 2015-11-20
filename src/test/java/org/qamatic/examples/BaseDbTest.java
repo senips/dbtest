@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-@ContextConfiguration(locations = {"classpath:/database-context.xml"})
+@ContextConfiguration(locations = {"classpath:/test-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public abstract class BaseDbTest {
 }

@@ -3,6 +3,7 @@ package org.qamatic.examples;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.qamatic.mintleaf.core.DbConnectionProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertNotNull;
@@ -13,6 +14,8 @@ public class DataValidationTest extends BaseDbTest {
     @Autowired
     private Dummy injectedObject;
 
+    @Autowired
+    private DbConnectionProperties connectionProperties;
 
     @BeforeClass
     public static void setUp() {
@@ -27,7 +30,7 @@ public class DataValidationTest extends BaseDbTest {
     @Test
     public void testSampleServiceGetOrder() {
 
+        assertNotNull("Object is not null", connectionProperties);
 
-        assertNotNull("Object is not null", injectedObject);
     }
 }
