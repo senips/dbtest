@@ -25,12 +25,14 @@
  *
  */
 
-package org.qamatic.examples;
+package org.qamatic.common;
 
-import org.springframework.context.annotation.Configuration;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-@Configuration
-public class AppConfig {
-
+@ContextConfiguration(locations = {"classpath:/test-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+public abstract class BaseDbTest {
 }
