@@ -70,8 +70,9 @@ public class DataValidationTest extends BaseDbTest {
     public void testUserCreation() throws IOException, SQLException {
         OraclePackage sqlObject = new OraclePackage(testUserDbContext) {
         };
+
         sqlObject.setSource("/CREATE_TEST_USER.sql");
-        sqlObject.create();
+        sqlObject.createAll();
         assertNotNull("Object is not null", testUserDbContext);
 
     }
